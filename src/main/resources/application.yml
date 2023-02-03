@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+    
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/photogram?serverTimezone=Asia/Seoul
+    username: cos
+    password: cos1234
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update # update <- 서버 데이터 유지 / create <- 사라짐 / none <- 아무것도 변경 못하게... / create-drop도 있는데 몰라도 된다고...
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+      
+  servlet:
+    multipart: # multipart 스타일로 사진을 받겠다.
+      enabled: true # true <- 사진을 받겠다.
+      max-file-size: 2MB # 사진 최대 용량은 2MB가 넘지 않도록 제한
+
+  security:
+    user:
+      name: test
+      password: 1234   
+
+file: # 내가 만든 키값
+  path: C:/workspace/springbootwork/photogram_upload/ # 업로드된 사진 저장할 공간(폴더)
